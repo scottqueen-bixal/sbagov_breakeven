@@ -1,0 +1,25 @@
+@import '../../../styles/variables.less';
+
+.fixedCosts-container {
+  h4 {
+    margin-bottom: @base-spacing;
+  }
+
+  .fixedCost-suggestion {
+    background-color: @sba-gray-lighter;
+    padding: 0.5rem;
+    width: fit-content;
+
+    button {
+      color: @secondary-blue-dark;
+      margin: 0 0.2rem;
+      text-align: left;
+    }
+  }
+  
+  &.hidden {
+    display: none;
+  }
+
+  
+}

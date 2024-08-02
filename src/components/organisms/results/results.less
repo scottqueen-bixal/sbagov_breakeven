@@ -1,0 +1,66 @@
+@import '../../../styles/variables.less';
+
+.resultsContainer {
+  background-color: rgba(88,172,239,0.2);
+  min-height: 1300px;
+
+  .ui.cards > .card > :first-child, .ui.card > :first-child {
+    border-radius: 4px !important;
+  }
+
+  h1 {
+    text-align: center;
+    color: @sba-white;
+    padding: @base-spacing 0;
+  }
+
+  p {
+    color: @sba-gray-dark;
+  }
+
+  .gradientBackground {
+    background-color: @secondary-blue;
+    height: 180px;
+  }
+
+  .dataCards-container {
+    max-width: 1200px;
+    margin: -75px auto 1rem;
+    padding: 0 @base-spacing 75px;
+    @media only screen and (max-width: @breakpoint-medium) {
+      padding: 0 0 50px;
+    }
+  }
+
+  .ui.basic.label {
+    font-weight: 400;
+    color: unset;
+
+    i.legend-color.units {
+      color: @secondary-blue-light;
+    }
+
+    i.legend-color.sales {
+      color: @secondary-blue;
+    }
+  }
+
+  .number {
+    overflow-wrap: break-word;
+  }
+
+}
+  #faqAccordion, #printCTA  {
+    max-width: 895px !important;
+  }
+  
+  #printCTA {
+    box-shadow: @box-shadow;
+    padding: @base-spacing;
+    margin-top: -55px;
+    background-color: @sba-white;
+
+    .button {
+      text-transform: uppercase;
+    }
+  }

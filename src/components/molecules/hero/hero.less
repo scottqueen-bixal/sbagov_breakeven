@@ -1,0 +1,40 @@
+@import '../../../styles/variables.less';
+
+.heroContainer {
+  text-align: center;
+
+  h1, p {
+    color: @sba-white;
+  }
+
+  .blueGradient{
+    min-height: 450px;
+    background-color: @secondary-blue;
+    padding: 75px 0 @base-spacing;
+  }
+
+  img {
+    margin-bottom: -75px;
+  }
+
+  .formula {
+    color: @sba-white;
+    background-color: rgba(0, 81, 139, 0.7);
+    padding: @small-spacing;
+    font-size: 24px;
+  }
+
+  .ui.container {
+    padding-top: @base-spacing;
+  }
+}
+
+.heroChildren-container {
+  padding: @base-spacing * 2;
+  background-color: @sba-white;
+  border: 1px solid @sba-gray-light;
+  margin-top: -7vw;
+  @media only screen and (max-width: @breakpoint-medium) {
+    padding: @base-spacing;
+  }
+}

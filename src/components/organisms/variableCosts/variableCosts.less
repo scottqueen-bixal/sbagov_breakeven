@@ -1,0 +1,59 @@
+@import '../../../styles/variables.less';
+
+.variableCosts-container {
+  h4 {
+    margin-bottom: @base-spacing;
+  }
+
+  .variableCost-suggestion {
+    background-color: @sba-gray-lighter;
+    padding: 0.5rem;
+    width: fit-content;
+
+    button {
+      color: @secondary-blue-dark;
+      margin: 0 0.2rem;
+      text-align: left;
+    }
+  }
+
+  .field {
+    &.continueButton {
+      display: inline-block;
+    }
+  }
+
+  .warningMessage {
+    color: @sba-red;
+
+    i {
+      border: 1px solid @sba-red;
+      box-shadow: unset;
+      margin: 0;
+    }
+  }
+
+  .navLink {
+    display: inline-block;
+    margin: @small-spacing @small-spacing @small-spacing 0;
+    color: @secondary-blue;
+
+    &:hover {
+      color: @secondary-blue-light;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  .returnLinks {
+    #backLink {
+      padding-right: 0;
+    }
+
+    #restartLink {
+      padding-left: 0;
+    }
+  }
+}

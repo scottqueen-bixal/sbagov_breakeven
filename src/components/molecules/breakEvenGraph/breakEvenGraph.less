@@ -1,0 +1,118 @@
+@import '../../../styles/variables.less';
+
+#breakEvenGraph {
+  .subtext {
+    margin-bottom: 0;
+  }
+
+  #lineChart {
+    cursor: pointer;
+
+    .graphCanvas {
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  card.breakEvenPointLabel {
+    left: 191px;
+    position: relative;
+    text-align: center;
+    top: 100px;
+  }
+
+  #tooltip {
+    padding: 5px;
+    background-color: white;
+    box-shadow: @box-shadow;
+    z-index: 2000;
+    position: absolute;
+  }
+
+  .tooltipLeft {
+    margin-left: -210px;
+  }
+  .graphLineLabel {
+    margin-bottom: 5px;
+  }
+
+  .labelImg {
+    padding-top: 5px;
+    padding-right: 15px;
+  }
+
+  .yGridLines line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+  }
+
+  .yGridLines path:first-child {
+    stroke-width: 0;
+  }
+  
+  i.breakEven.circle.icon {
+    color: @secondary-blue;
+  }
+
+  .lineLegend {
+    display: block;
+  }
+  
+  path.breakEvenLine {
+    stroke-width: 4px;
+  }
+  .graphContainer {
+    position: relative;
+    
+  .tick text {
+      font-size: 12px;
+    @media only screen and (max-width: @breakpoint-medium) {
+      font-size: 25px;
+    }
+  }
+
+
+    .ui.card.tooltip {
+      border-width: 2px;
+      font-size: calc(12px + .6vw);
+      font-weight: 600;
+      line-height: calc(12px + .8vw);
+      padding: 5px;
+      position: absolute;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      left: 4%;
+      right: 0;
+      top: 10px;
+      text-align: center;
+      width: 8vw;
+      min-width: 100px;
+      @media only screen and (max-width: @breakpoint-medium) {
+        top: 50px;
+        left: 35px;
+      }
+    
+      div.units {
+        color: @secondary-blue;
+        font-size: calc(12px + 1vw);
+        line-height: calc(12px + 1.1vw);
+        margin-bottom:0.5vw;
+        margin-top: 0.7vw;
+      }
+    }
+
+    .unitLabel {
+      color: @sba-gray-dark;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 18px;
+      text-align: center;
+    }
+  }
+}
+
+
+

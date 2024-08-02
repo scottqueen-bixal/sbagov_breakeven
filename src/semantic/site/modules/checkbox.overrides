@@ -1,0 +1,41 @@
+/*******************************
+         Site Overrides
+*******************************/
+.ui.radio.checkbox {
+  border: 1px solid @sba-gray-light;
+  border-radius: 5px;
+  height: auto;
+  min-height: 2rem;
+  max-height: 3.5rem;
+  width: 100%;
+  padding: 1rem;
+
+  @media only screen and (max-width: @breakpoint-medium) {
+    width: 110%;
+
+    & label {
+      font-size: 15px;
+    }
+  }
+  /* really small phones */
+  @media only screen and (max-width: 320px) {
+    width: 116%;
+    padding: 1rem 10px;
+    label {
+      font-size: 14px;
+    }
+  }
+}
+
+.ui.checkbox .box,
+.ui.checkbox label {
+  font-size: 16px;
+}
+
+.ui.radio.checkbox .box:before, .ui.radio.checkbox label:before {
+  transform: scale(1.5);
+}
+
+.ui.radio.checkbox .box:after, .ui.radio.checkbox label:after {
+  transform: scale(.8);
+}
