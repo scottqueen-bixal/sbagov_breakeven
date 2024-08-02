@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import * as path from "path";
 import react from "@vitejs/plugin-react";
+import testConfig from "./vite-config/test";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,4 +22,5 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  test: testConfig,
 });
