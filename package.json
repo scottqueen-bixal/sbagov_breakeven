@@ -3,7 +3,9 @@
   "version": "0.0.1.beta",
   "description": "progressively decoupled app for the sbagov_breakeven calculator",
   "main": "index.js",
-  "engine": "20.x",
+  "engines": {
+    "node": "20.x.x"
+  },
   "author": "gscottqueen",
   "license": "ISC",
   "scripts": {
@@ -11,7 +13,7 @@
     "build": "vite build",
     "lint": "echo \"Error: no linters specified\" && exit 1",
     "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
