@@ -14,6 +14,8 @@ import { FAQ_CONTENT, CALCULATOR_STEPS } from "../../../constants";
 
 import "./results.less";
 
+const MODE = import.meta.env.MODE;
+
 export const generateDataTableRow = (data) => {
   const { units, pricePerUnit, variableCostPerUnit, fixedCost } = data;
 
@@ -159,7 +161,7 @@ const Results = (props) => {
         <BecAccordion data={FAQ_CONTENT[CALCULATOR_STEPS.RESULTS_PAGE] || []} />
       </Container>
       <feedback-form
-        env={process.env.GATSBY_API_ENV}
+        env={MODE}
         product="BEPC"
         productTitle="COVID Break Even Point Calculator Feedback"
       ></feedback-form>
