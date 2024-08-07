@@ -1,14 +1,9 @@
 const testConfig = {
   root: "src",
+  environment: "jsdom",
   globals: true,
-  testEnvironment: "jsdom",
-  reporters: [
-    "default",
-    [
-      "jest-junit",
-      { suiteName: "jest tests", outputDirectory: "./.build/test" },
-    ],
-  ],
+  setupFiles: "setupTests.js",
+  include: ["./helpers.test.js"],
 };
 
 export default testConfig;
