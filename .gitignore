@@ -3,3 +3,6 @@ cypress/screenshots
 cypress/fixtures
 cypress/support
 cypress/plugins
+dist
+.DS_Store
+**/*/.env
