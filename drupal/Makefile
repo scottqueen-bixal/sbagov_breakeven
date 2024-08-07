@@ -21,6 +21,7 @@ up:
 	@echo "Starting up containers for $(PROJECT_NAME)..."
 	docker compose pull
 	docker compose up -d --remove-orphans
+	make install-custom-module
 
 .PHONY: mutagen
 mutagen:
@@ -83,6 +84,11 @@ drush:
 .PHONY: logs
 logs:
 	@docker compose logs -f $(filter-out $@,$(MAKECMDGOALS))
+
+# install our custom module into Drupals custom module directory
+.PHONY: install-custom-module
+install-custom-module:
+	@docker cp -a custom $(PROJECT_NAME)_php:$(DRUPAL_ROOT)/modules/
 
 # https://stackoverflow.com/a/6273809/1826109
 %:
