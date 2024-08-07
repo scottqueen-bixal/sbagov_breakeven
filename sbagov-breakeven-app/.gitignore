@@ -4,5 +4,6 @@ cypress/fixtures
 cypress/support
 cypress/plugins
 dist
+**/.env
 .DS_Store
-**/*/.env
+**/.DS_Store
