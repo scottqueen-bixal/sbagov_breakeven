@@ -2,6 +2,7 @@
   "name": "sbagov_breakeven",
   "version": "0.0.1.beta",
   "description": "progressively decoupled app for the sbagov_breakeven calculator",
+  "type": "module",
   "main": "index.js",
   "engines": {
     "node": "20.x.x"

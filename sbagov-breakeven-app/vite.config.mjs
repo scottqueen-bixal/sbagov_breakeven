@@ -24,4 +24,16 @@ export default defineConfig({
     open: "/",
   },
   test: testConfig,
+  build: {
+    emptyOutDir: true,
+    outDir: "build",
+    chunkSizeWarningLimit: "1000",
+    rollupOptions: {
+      output: {
+        manualChunks: {},
+        entryFileNames: `js/sbagov-breakeven.min.js`,
+        assetFileNames: `css/sbagov-breakeven.min.[ext]`,
+      },
+    },
+  },
 });
