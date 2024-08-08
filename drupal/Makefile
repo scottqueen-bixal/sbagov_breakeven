@@ -90,6 +90,10 @@ logs:
 install-custom-module:
 	@docker cp -a custom $(PROJECT_NAME)_php:$(DRUPAL_ROOT)/modules/
 
+.PHONY: exports-custom-module
+exports-custom-module:
+	@docker cp -a $(PROJECT_NAME)_php:$(DRUPAL_ROOT)/modules/ custom
+
 # https://stackoverflow.com/a/6273809/1826109
 %:
 	@:
