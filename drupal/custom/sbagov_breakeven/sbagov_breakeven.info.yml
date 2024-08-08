@@ -1,5 +1,5 @@
-name: 'Sbagov breakeven'
+name: "SBA Break Even Calculator"
 type: module
-description: '@todo Add description.'
-package: '@todo Add package'
+description: "Custom drupal block for instantiating the SBA Break Even Calculator application."
+package: "SBA"
 core_version_requirement: ^10 || ^11
