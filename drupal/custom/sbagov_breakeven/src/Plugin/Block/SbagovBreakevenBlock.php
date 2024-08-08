@@ -22,7 +22,9 @@ final class SbagovBreakevenBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build(): array {
-    $build['content']['#markup'] = '<div id="sbagov-breakeven">SBA Break Even Calculator</div>';
+    $build['#attached']['library'][] = 'sbagov_breakeven/sbagov_breakeven_assets';
+    $build['content']['#markup'] = '<div id="sbagov-breakeven">SBA Break Even Calculator w/libraries</div>';
+
     return $build;
   }
 

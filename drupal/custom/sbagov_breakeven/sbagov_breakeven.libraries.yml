@@ -1,0 +1,7 @@
+sbagov_breakeven_assets:
+  version: 1.x
+  js:
+    js/sbagov-breakeven.min.js: { attributes: { type: module } }
+  css:
+    theme:
+      css/sbagov-breakeven.min.css: {}
