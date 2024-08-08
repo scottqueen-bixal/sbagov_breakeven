@@ -2,6 +2,8 @@ include .env
 
 default: up
 
+JS_APP_ROOT ?= sbagov-breakeven-app
+JS_APP_ASSETS ?= sbagov-breakeven
 COMPOSER_ROOT ?= /var/www/html
 DRUPAL_ROOT ?= /var/www/html/web
 
@@ -21,11 +23,21 @@ up:
 	@echo "Starting up containers for $(PROJECT_NAME)..."
 	docker compose pull
 	docker compose up -d --remove-orphans
+	make build-app
 	make install-custom-module
 
-.PHONY: mutagen
-mutagen:
-	mutagen-compose up
+## build-app	:	build the js app and relocate the library assets
+.PHONY: build-app
+build-app:
+	@echo "Installing..."
+	npm install --prefix  custom/$(PROJECT_NAME)/$(JS_APP_ROOT)
+	@echo "Building SBA breakeven calculator..."
+	npm run build --prefix  custom/$(PROJECT_NAME)/$(JS_APP_ROOT)
+	@echo "Copy js asset..."
+	cp custom/$(PROJECT_NAME)/$(JS_APP_ROOT)/build/js/$(JS_APP_ASSETS).min.js custom/$(PROJECT_NAME)/js/
+	@echo "Copy css asset..."
+	cp custom/$(PROJECT_NAME)/$(JS_APP_ROOT)/build/css/$(JS_APP_ASSETS).min.css custom/$(PROJECT_NAME)/css/
+
 
 ## down	:	Stop containers.
 .PHONY: down
