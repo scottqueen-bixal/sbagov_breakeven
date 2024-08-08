@@ -7,7 +7,7 @@ npm install
 npm run dev
 ```
 
-## drupal
+## Drupal
 
 ```
 make up
