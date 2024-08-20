@@ -1,5 +1,6 @@
-import EditableTotal from './editableTotal/editableTotal'
-import Modal from './modal/modal'
-import MoneyInput from './moneyInput/moneyInput'
+import EditableTotal from "./editableTotal/editableTotal";
+import Modal from "./modal/modal";
+import MoneyInput from "./moneyInput/moneyInput";
+import Icons from "./icons/icons";
 
-export { Modal, MoneyInput, EditableTotal }
+export { Icons, Modal, MoneyInput, EditableTotal };
