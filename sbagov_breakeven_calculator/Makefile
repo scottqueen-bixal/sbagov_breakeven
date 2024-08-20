@@ -106,6 +106,13 @@ install-custom-module:
 exports-custom-module:
 	@docker cp -a $(PROJECT_NAME)_php:$(DRUPAL_ROOT)/modules/ custom
 
+.PHONY: app-dev
+app-dev:
+	@echo "Installing..."
+	npm install --prefix  custom/$(PROJECT_NAME)/$(JS_APP_ROOT)
+	@echo "Start dev..."
+	npm run dev --prefix  custom/$(PROJECT_NAME)/$(JS_APP_ROOT)
+
 # https://stackoverflow.com/a/6273809/1826109
 %:
 	@:
