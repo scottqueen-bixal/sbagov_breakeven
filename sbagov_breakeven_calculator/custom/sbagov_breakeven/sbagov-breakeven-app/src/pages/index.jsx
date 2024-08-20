@@ -11,6 +11,7 @@ import {
   VariableCosts,
 } from "../components/organisms";
 import { CALCULATOR_STEPS, FAQ_CONTENT } from "../constants";
+import "semantic-ui-css/semantic.min.css"; // brings in icons
 import "../styles/typography.less";
 import "./index.less";
 
