@@ -1,9 +1,10 @@
 import React from "react";
+import * as d3 from "d3";
 import { Image, Card, Grid } from "semantic-ui-react";
 import { formatBreakEvenGraphData, formatNumber } from "../../../helpers";
-import "./breakEvenGraph.less";
-import * as d3 from "d3";
 import { Icons } from "../../atoms/index";
+
+import "./breakEvenGraph.less";
 
 export const drawLineChart = (data, windowWidth) => {
   //Clean out the SVG
@@ -371,9 +372,9 @@ export class BreakEvenGraph extends React.Component {
                 tablet={2}
                 mobile={4}
               >
-                <Image centered alt="graph icon" size="tiny" left="true">
+                {/* <Image centered alt="graph icon" size="tiny" left="true">
                   <Icons.GraphIcon />
-                </Image>
+                </Image> */}
               </Grid.Column>
               <Grid.Column computer={5} tablet={10} mobile={12} stretched>
                 <h3>Break-Even Point Graph</h3>
@@ -410,7 +411,7 @@ export class BreakEvenGraph extends React.Component {
                   size="small"
                   left="true"
                 >
-                  <Icons.FixedCost />
+                  <Icons.FixedCosts />
                 </Image>
                 <Image
                   className="labelImg"
