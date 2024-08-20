@@ -15,7 +15,7 @@ export const BreakevenPoint = () => (
     <path
       d="m18 36 83.5.5"
       stroke="#047dbc"
-      stroke-linecap="square"
+      strokeLinecap="square"
       strokeWidth="4"
     />
     <rect
@@ -354,4 +354,5 @@ export default {
   SBALogoWithText,
   SBALogo,
   TotalCosts,
+  UnitSales,
 };
