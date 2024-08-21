@@ -346,6 +346,35 @@ export const UnitSales = () => (
   </svg>
 );
 
+// FontAwesome
+// minus
+export const Minus = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z" />
+  </svg>
+);
+
+// angle left
+export const AngleLeft = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+    <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+  </svg>
+);
+
+// chevron up
+export const ChevronUp = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
+  </svg>
+);
+
+// chevron down
+export const ChevronDown = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+  </svg>
+);
+
 export default {
   BreakevenPoint,
   CalculatorIcon,
@@ -355,4 +384,8 @@ export default {
   SBALogo,
   TotalCosts,
   UnitSales,
+  Minus,
+  AngleLeft,
+  ChevronUp,
+  ChevronDown,
 };
