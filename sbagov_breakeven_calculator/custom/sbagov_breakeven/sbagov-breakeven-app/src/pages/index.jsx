@@ -78,7 +78,7 @@ const BreakEvenCalculator = () => {
                 visible={stepNum === CALCULATOR_STEPS.FIXED_COSTS}
                 goToStep={goToStep}
                 setFixedCost={updateFixedCost}
-                totalFixedCost={totalFixedCost}
+                totalFixedCosts={totalFixedCost}
                 key={shouldReset} // change in key forces a re-mount
               />
               <UnitSales
