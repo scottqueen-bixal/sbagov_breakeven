@@ -1,5 +1,5 @@
 import React from "react";
-import { Icons } from "../../atoms/index";
+import { Icons } from "../../atoms";
 import { Image, Grid } from "semantic-ui-react";
 
 import "./footer.less";

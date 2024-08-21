@@ -1,7 +1,8 @@
 import React from "react";
-import { Icons } from "../../atoms/index";
+import { Icons } from "../../atoms";
+import { Image, Divider, Grid } from "semantic-ui-react";
+
 import "./header.less";
-import { Image, Divider, Grid, Icon } from "semantic-ui-react";
 
 const Header = () => (
   <header className="bec-header">
@@ -12,7 +13,9 @@ const Header = () => (
         </Image>
         <Divider />
         <a className="return-link" href="/breakevenpointcalculator">
-          <Icon name="angle left" />
+          <i aria-hidden="true" className="icon">
+            <Icons.AngleLeft />
+          </i>
           Return to break-even page
         </a>
       </Grid.Column>

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { Container, Image } from "semantic-ui-react";
-import { Icons } from "../../atoms/index";
+import { Icons } from "../../atoms";
+
 import "./hero.less";
 
 const Hero = (props) => {

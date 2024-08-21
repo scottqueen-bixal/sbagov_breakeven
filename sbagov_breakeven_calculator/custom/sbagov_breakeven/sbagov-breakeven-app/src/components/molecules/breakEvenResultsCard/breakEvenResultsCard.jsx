@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Grid, Image, Card } from "semantic-ui-react";
 
-import { Icons } from "../../atoms/index";
+import { Icons } from "../../atoms";
 import { formatNumber, roundToTwoDecimals } from "../../../helpers";
 import "./breakEvenResultsCard.less";
 
