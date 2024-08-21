@@ -16,8 +16,8 @@
     "lint": "echo \"Error: no linters specified\" && exit 1",
     "preview": "vite preview",
     "test": "vitest",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "devDependencies": {
     "@babel/plugin-transform-spread": "7.12.13",
