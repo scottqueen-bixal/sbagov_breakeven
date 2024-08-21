@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "serve": "vite serve",
     "lint": "echo \"Error: no linters specified\" && exit 1",
     "preview": "vite preview",
     "test": "vitest",
