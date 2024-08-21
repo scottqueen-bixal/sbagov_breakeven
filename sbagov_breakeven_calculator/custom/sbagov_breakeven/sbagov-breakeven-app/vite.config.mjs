@@ -27,10 +27,11 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     outDir: "build",
-    chunkSizeWarningLimit: "1000",
+    assetsInlineLimit: "150000",
+    chunkSizeWarningLimit: "10000",
     rollupOptions: {
       output: {
-        manualChunks: {},
+        manualChunks: null,
         entryFileNames: `js/sbagov-breakeven.min.js`,
         assetFileNames: `css/sbagov-breakeven.min.[ext]`,
       },
