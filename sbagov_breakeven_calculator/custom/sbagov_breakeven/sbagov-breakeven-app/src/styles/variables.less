@@ -3,9 +3,9 @@
 *******************************/
 // # Typography --------------------------------------------------------------
 // # Typography --------------------------------------------------------------
-@font-stack-georgia: ('Georgia', 'Times', 'Times New Roman', serif);
-@font-stack-helvetica: ('Helvetica Neue', 'Helvetica', 'Arial', sans-serif);
-@sans-serif-font-family: 'Source Sans Pro', @font-stack-helvetica;
+@font-stack-georgia: ("Georgia", "Times", "Times New Roman", serif);
+@font-stack-helvetica: ("Helvetica Neue", "Helvetica", "Arial", sans-serif);
+@sans-serif-font-family: "Source Sans Pro", @font-stack-helvetica;
 @serif-font-family: Merriweather, @font-stack-georgia;
 
 @base-font-size: 18px;
@@ -95,76 +95,3 @@
 
 @base-duration: 150ms;
 @base-timing: ease;
-
-// # Grid ---------------------------------------------------------------------
-
-// TODO: rename to @grid-large-up
-@sba-grid-large: (
-  columns: 12,
-  gutter: 30px,
-  media: '(min-width: #{@breakpoint-large})'
-);
-
-// TODO: rename to @grid-medium-up
-@sba-grid-medium: (
-  columns: 12,
-  gutter: 30px,
-  media: '(min-width: #{@breakpoint-medium})'
-);
-
-// TODO: refactor to @grid-small-up and @grid-large-only
-@sba-grid-medium-and-small: (
-  columns: 6,
-  gutter: 20px,
-  media: '(min-width: 0px) and (max-width: 1199px)'
-);
-
-// TODO: refactor to @grid-small-only
-@sba-grid-small: (
-  columns: 6,
-  gutter: 20px,
-  media: '(max-width: 767px)'
-);
-
-// TODO: refactor these to use function?
-@desktop-0gutter: (
-  columns: 12,
-  gutter: 0px,
-  media: '(min-width: #{@breakpoint-large})'
-);
-
-@tablet-0gutter: (
-  columns: 12,
-  gutter: 0,
-  media: '(min-width: #{@breakpoint-medium}) and (max-width: 1199px)'
-);
-
-@tablet-mobile-0gutter: (
-  columns: 6,
-  gutter: 0,
-  media: '(min-width: 0px) and (max-width: 1199px)'
-);
-
-@mobile-0gutter: (
-  columns: 6,
-  gutter: 0,
-  media: '(max-width: 767px)'
-);
-
-@desktop-nav: (
-  columns: 12,
-  gutter: 0,
-  media: '(min-width: #{@breakpoint-large})'
-);
-
-@tablet-nav: (
-  columns: 12,
-  gutter: 0,
-  media: '(min-width: #{@breakpoint-medium}) and (max-width: 1199px)'
-);
-
-@mobile-nav: (
-  columns: 6,
-  gutter: 0,
-  media: '(max-width: 767px)'
-);
