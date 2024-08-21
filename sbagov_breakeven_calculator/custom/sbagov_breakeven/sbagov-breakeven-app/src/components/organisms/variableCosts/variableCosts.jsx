@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Form, Radio, Grid } from "semantic-ui-react";
 import { NumbersInputForm } from "../../molecules";
@@ -12,66 +12,60 @@ import { sumValues } from "../../../helpers";
 
 import "./variableCosts.less";
 
-class VariableCosts extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      knowVariableCosts: null,
-      totalVariableCosts: "",
-      formError: false,
-      fields: {
-        "Direct Materials": 0,
-        "Piece Rate Labor": 0,
-        "Production Supplies": 0,
-        Commissions: 0,
-        "Freight Out": 0,
-        "Other Variable Costs": 0,
-      },
-    };
-  }
+const VariableCosts = ({
+  visible,
+  pricePerUnit,
+  goToStep,
+  setVariableCost,
+  restart,
+}) => {
+  const [knowVariableCosts, setKnowVariableCosts] = useState(null);
+  const [totalVariableCosts, setTotalVariableCosts] = useState("");
+  const [formError, setFormError] = useState(false);
+  const [fields, setFields] = useState({
+    "Direct Materials": 0,
+    "Piece Rate Labor": 0,
+    "Production Supplies": 0,
+    Commissions: 0,
+    "Freight Out": 0,
+    "Other Variable Costs": 0,
+  });
 
-  self = CALCULATOR_STEPS.VARIABLE_COSTS;
+  const resetTotalVariableCosts = () => setTotalVariableCosts("");
 
-  resetTotalVariableCosts = () => {
-    this.setState({ totalVariableCosts: "" });
+  const resetFields = () => {
+    setFields({ fields: variableCostInitState });
+    resetTotalVariableCosts();
   };
 
-  resetFields = () => {
-    this.setState({ fields: variableCostInitState });
-    this.resetTotalVariableCosts();
+  const handleRadioButtonChange = (e, { value }) => {
+    if (value === "yes") {
+      resetFields();
+    } else if (value === "no") {
+      resetTotalVariableCosts();
+    }
+    setKnowVariableCosts(value);
   };
 
-  handleRadioButtonChange = (e, { value }) => {
-    value === "yes" && this.resetFields();
-    value === "no" && this.resetTotalVariableCosts();
-    this.setState({ knowVariableCosts: value });
+  const handleInputFieldChange = (name, value) => {
+    const runningSum = sumValues(fields);
+
+    setFormError(false);
+    setFields({ ...fields, [name]: value }) &&
+      setTotalVariableCosts(runningSum);
   };
 
-  handleInputFieldChange = (name, value) => {
-    this.setState(
-      {
-        fields: { ...this.state.fields, [name]: value },
-      },
-      () => {
-        const runningSum = sumValues(this.state.fields);
-        this.setState({ totalVariableCosts: runningSum });
-      }
-    );
-  };
-
-  handleSubmit = () => {
-    const { totalVariableCosts } = this.state;
-
+  const handleSubmit = () => {
     if (!totalVariableCosts && totalVariableCosts !== 0) {
-      this.setState({ formError: true });
+      setFormError(true);
     } else {
-      this.setState({ formError: false });
-      this.props.setVariableCost(this.state.totalVariableCosts);
-      this.props.goToStep(CALCULATOR_STEPS.VARIABLE_COSTS + 1);
+      setFormError(false);
+      setVariableCost(totalVariableCosts);
+      goToStep(CALCULATOR_STEPS.VARIABLE_COSTS + 1);
     }
   };
 
-  totalVariableCostPerUnit = () => {
+  const TotalVariableCostPerUnit = () => {
     return (
       <Grid.Column>
         <label htmlFor="totalVariableCosts">
@@ -82,10 +76,9 @@ class VariableCosts extends React.Component {
           <MoneyInput
             name="totalVariableCosts"
             errorMessage="Enter a valid variable cost per unit to continue"
-            formError={this.state.formError}
+            formError={formError}
             onChange={(e, { value }) => {
-              this.setState({ totalVariableCosts: value });
-              this.setState({ formError: false });
+              setTotalVariableCosts(value) && setFormError(false);
             }}
           />
         </Form.Field>
@@ -93,158 +86,150 @@ class VariableCosts extends React.Component {
     );
   };
 
-  render() {
-    const showWarning =
-      parseInt(this.state.totalVariableCosts) >=
-      parseInt(this.props.pricePerUnit);
+  const showWarning = parseInt(totalVariableCosts) >= parseInt(pricePerUnit);
 
-    return (
-      <div
-        aria-hidden={!this.props.visible}
-        className={`variableCosts-container ${
-          this.props.visible ? "" : "hidden"
-        }`}
-      >
-        <h3>Calculate your total variable costs per unit</h3>
-        <p>
-          Variable costs are costs that change with sales or volume. They are
-          based on the production of one unit.
-          <br />
-          <span className="subtext">* indicates required field</span>
-        </p>
-        <Form onSubmit={this.handleSubmit}>
-          <div role="group" aria-labelledby="variableCostQuestion">
-            <h4 id="variableCostQuestion">
-              Do you know your variable cost per unit?*
-            </h4>
-            <Grid container columns={2} stackable>
-              <Grid.Column>
-                <Form.Field
-                  control={Radio}
-                  label="Yes"
-                  aria-label="yes, I know the total of my variable costs per unit"
-                  name="yesBox"
-                  value="yes"
-                  checked={this.state.knowVariableCosts === "yes"}
-                  onChange={this.handleRadioButtonChange}
-                />
-              </Grid.Column>
-              <Grid.Column>
-                <Form.Field
-                  control={Radio}
-                  label="No, input values individually"
-                  aria-label="no, input values individually"
-                  name="noBox"
-                  value="no"
-                  checked={this.state.knowVariableCosts === "no"}
-                  onChange={this.handleRadioButtonChange}
-                />
-              </Grid.Column>
-              {this.state.knowVariableCosts === "no" && (
-                <NumbersInputForm
-                  onChange={(e, { name, value }) => {
-                    this.handleInputFieldChange(name, value);
-                    this.setState({ formError: false });
-                  }}
-                  fields={variableCostFields}
-                />
-              )}
-              {this.state.knowVariableCosts === "yes" &&
-                this.totalVariableCostPerUnit()}
-            </Grid>
-          </div>
-          <Grid columns={1}>
-            {this.state.knowVariableCosts === "yes" && (
-              <Grid.Column>
-                <div className="variableCost-suggestion">
-                  Help with your total variable costs?
-                  <Button
-                    basic
-                    className="noBorder darkBlue"
-                    type="button"
-                    onClick={() => this.setState({ knowVariableCosts: "no" })}
-                  >
-                    Add variable costs individually
-                  </Button>
-                </div>
-              </Grid.Column>
+  return (
+    <div
+      aria-hidden={!visible}
+      className={`variableCosts-container ${visible ? "" : "hidden"}`}
+    >
+      <h3>Calculate your total variable costs per unit</h3>
+      <p>
+        Variable costs are costs that change with sales or volume. They are
+        based on the production of one unit.
+        <br />
+        <span className="subtext">* indicates required field</span>
+      </p>
+      <Form onSubmit={handleSubmit}>
+        <div role="group" aria-labelledby="variableCostQuestion">
+          <h4 id="variableCostQuestion">
+            Do you know your variable cost per unit?*
+          </h4>
+          <Grid container columns={2} stackable>
+            <Grid.Column>
+              <Form.Field
+                control={Radio}
+                label="Yes"
+                aria-label="yes, I know the total of my variable costs per unit"
+                name="yesBox"
+                value="yes"
+                checked={knowVariableCosts === "yes"}
+                onChange={handleRadioButtonChange}
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <Form.Field
+                control={Radio}
+                label="No, input values individually"
+                aria-label="no, input values individually"
+                name="noBox"
+                value="no"
+                checked={knowVariableCosts === "no"}
+                onChange={handleRadioButtonChange}
+              />
+            </Grid.Column>
+            {knowVariableCosts === "no" && (
+              <NumbersInputForm
+                onChange={(e, { name, value }) => {
+                  handleInputFieldChange(name, value);
+                }}
+                fields={variableCostFields}
+              />
             )}
-            {this.state.formError && this.state.knowVariableCosts === "no" && (
-              <p role="alert" className="errorMsg">
-                Enter a valid variable cost per unit to continue
-              </p>
-            )}
-            {this.state.knowVariableCosts && (
-              <Grid.Column>
-                <Grid
-                  columns={2}
-                  reversed="mobile"
-                  verticalAlign="middle"
-                  stackable
-                >
-                  <Grid.Column width={3}>
-                    <Form.Button
-                      type="submit"
-                      className="continueButton"
-                      primary
-                      content="CONTINUE"
-                    />
-                  </Grid.Column>
-                  {showWarning && (
-                    <Grid.Column width={12}>
-                      <Grid columns={2} verticalAlign="middle">
-                        <Grid.Column className="warningMessage" width={1}>
-                          <i aria-hidden="true" className="circular small icon">
-                            <Icons.Minus />
-                          </i>
-                        </Grid.Column>
-                        <Grid.Column
-                          role="alert"
-                          floated="left"
-                          className="warningMessage"
-                          width={12}
-                        >
-                          <p>
-                            Your variable costs are higher than your unit price.
-                            You will never break-even. Consider adjusting your
-                            values.
-                          </p>
-                        </Grid.Column>
-                      </Grid>
-                    </Grid.Column>
-                  )}
-                </Grid>
-              </Grid.Column>
-            )}
+            {knowVariableCosts === "yes" && <TotalVariableCostPerUnit />}
           </Grid>
-        </Form>
-        <Grid className="returnLinks" columns={2}>
-          <Grid.Column id="backLink" mobile={8} computer={4}>
-            <Button
-              basic
-              color="blue"
-              type="button"
-              aria-label="Back to unit sales"
-              className="noBorder navLink"
-              onClick={() => this.props.goToStep(this.self - 1)}
-            >{`< Back to unit sales`}</Button>
-          </Grid.Column>
-          <Grid.Column id="restartLink" mobile={8} computer={3}>
-            <Button
-              basic
-              color="blue"
-              type="button"
-              className="noBorder navLink"
-              onClick={this.props.restart}
-            >
-              Restart Analysis
-            </Button>
-          </Grid.Column>
+        </div>
+        <Grid columns={1}>
+          {knowVariableCosts === "yes" && (
+            <Grid.Column>
+              <div className="variableCost-suggestion">
+                Help with your total variable costs?
+                <Button
+                  basic
+                  className="noBorder darkBlue"
+                  type="button"
+                  onClick={() => setKnowVariableCosts("no")}
+                >
+                  Add variable costs individually
+                </Button>
+              </div>
+            </Grid.Column>
+          )}
+          {formError && knowVariableCosts === "no" && (
+            <p role="alert" className="errorMsg">
+              Enter a valid variable cost per unit to continue
+            </p>
+          )}
+          {knowVariableCosts && (
+            <Grid.Column>
+              <Grid
+                columns={2}
+                reversed="mobile"
+                verticalAlign="middle"
+                stackable
+              >
+                <Grid.Column width={3}>
+                  <Form.Button
+                    type="submit"
+                    className="continueButton"
+                    primary
+                    content="CONTINUE"
+                  />
+                </Grid.Column>
+                {showWarning && (
+                  <Grid.Column width={12}>
+                    <Grid columns={2} verticalAlign="middle">
+                      <Grid.Column className="warningMessage" width={1}>
+                        <i aria-hidden="true" className="circular small icon">
+                          <Icons.Minus />
+                        </i>
+                      </Grid.Column>
+                      <Grid.Column
+                        role="alert"
+                        floated="left"
+                        className="warningMessage"
+                        width={12}
+                      >
+                        <p>
+                          Your variable costs are higher than your unit price.
+                          You will never break-even. Consider adjusting your
+                          values.
+                        </p>
+                      </Grid.Column>
+                    </Grid>
+                  </Grid.Column>
+                )}
+              </Grid>
+            </Grid.Column>
+          )}
         </Grid>
-      </div>
-    );
-  }
-}
+      </Form>
+      <Grid className="returnLinks" columns={2}>
+        <Grid.Column id="backLink" mobile={8} computer={4}>
+          <Button
+            basic
+            color="blue"
+            type="button"
+            aria-label="Back to unit sales"
+            className="noBorder navLink"
+            onClick={() => goToStep(CALCULATOR_STEPS.VARIABLE_COSTS - 1)}
+          >{`< Back to unit sales`}</Button>
+        </Grid.Column>
+        <Grid.Column id="restartLink" mobile={8} computer={3}>
+          <Button
+            basic
+            color="blue"
+            type="button"
+            className="noBorder navLink"
+            onClick={restart}
+          >
+            Restart Analysis
+          </Button>
+        </Grid.Column>
+      </Grid>
+    </div>
+  );
+};
 
 VariableCosts.propTypes = {
   goToStep: PropTypes.func.isRequired,
