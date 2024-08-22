@@ -34,7 +34,7 @@ const VariableCosts = ({
   const resetTotalVariableCosts = () => setTotalVariableCosts("");
 
   const resetFields = () => {
-    setFields({ fields: variableCostInitState });
+    setFields({ ...variableCostInitState });
     resetTotalVariableCosts();
   };
 
@@ -48,22 +48,29 @@ const VariableCosts = ({
   };
 
   const handleInputFieldChange = (name, value) => {
-    const runningSum = sumValues(fields);
+    const updatedFields = { ...fields, [name]: value };
 
+    setFields(updatedFields);
+    setTotalVariableCosts(sumValues(updatedFields));
     setFormError(false);
-    setFields({ ...fields, [name]: value }) &&
-      setTotalVariableCosts(runningSum);
+  };
+
+  const handleInputVariableFieldChange = (value) => {
+    setTotalVariableCosts(value);
+    setFormError(false);
   };
 
   const handleSubmit = () => {
     if (!totalVariableCosts && totalVariableCosts !== 0) {
       setFormError(true);
     } else {
-      setFormError(false);
       setVariableCost(totalVariableCosts);
+      setFormError(false);
       goToStep(CALCULATOR_STEPS.VARIABLE_COSTS + 1);
     }
   };
+
+  console.log(fields, totalVariableCosts);
 
   const TotalVariableCostPerUnit = () => {
     return (
@@ -74,11 +81,14 @@ const VariableCosts = ({
         <p>Enter the sum of all known variable costs</p>
         <Form.Field>
           <MoneyInput
+            value={totalVariableCosts}
             name="totalVariableCosts"
+            autoFocus
+            ariaLabel="total variable cost"
             errorMessage="Enter a valid variable cost per unit to continue"
             formError={formError}
             onChange={(e, { value }) => {
-              setTotalVariableCosts(value) && setFormError(false);
+              handleInputVariableFieldChange(value);
             }}
           />
         </Form.Field>
