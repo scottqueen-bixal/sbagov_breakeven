@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Container } from "semantic-ui-react";
 import Layout from "../components/layout";
 import { EditableTotal } from "../components/atoms";
@@ -21,7 +21,7 @@ const BreakEvenCalculator = () => {
   const [numUnits, setNumUnits] = useState("");
   const [pricePerUnit, setPerPriceUnit] = useState("");
   const [totalFixedCost, setTotalFixedCost] = useState("");
-  const [shouldReset, setShouldReset] = useState(false);
+  const [shouldReset, setShouldReset] = useState(true);
 
   const goToStep = (stepNum) => setStepNum(stepNum);
 
@@ -35,16 +35,18 @@ const BreakEvenCalculator = () => {
   const updateFixedCost = (fixedCost) => setTotalFixedCost(fixedCost);
 
   const restartAnalysis = () => {
-    if (shouldReset === true) {
-      setStepNum(0);
-      setVariableCostPerUnit("");
-      setNumUnits("");
-      setPricePerUnit("");
-      setTotalFixedCost("");
-      setShouldReset(false);
-      goToStep(CALCULATOR_STEPS.FIXED_COSTS);
-    }
+    setStepNum(0);
+    setVariableCostPerUnit("");
+    setNumUnits("");
+    setPerPriceUnit("");
+    setTotalFixedCost("");
+    setShouldReset(false);
+    goToStep(CALCULATOR_STEPS.FIXED_COSTS);
   };
+
+  useEffect(() => {
+    stepNum > 0 && setShouldReset(true);
+  }, [stepNum]);
 
   return stepNum === CALCULATOR_STEPS.RESULTS_PAGE ? (
     <Layout>
