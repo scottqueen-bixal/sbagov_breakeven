@@ -3,7 +3,7 @@ const testConfig = {
   environment: "jsdom",
   globals: true,
   setupFiles: "setupTests.js",
-  include: ["./helpers.test.js"],
+  include: ["./utils/helpers.test.js"],
 };
 
 export default testConfig;
