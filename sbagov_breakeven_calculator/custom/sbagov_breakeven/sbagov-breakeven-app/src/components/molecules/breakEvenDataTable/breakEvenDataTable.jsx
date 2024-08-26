@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { Card, Table } from "semantic-ui-react";
-import { formatNumber } from "../../../helpers";
+import { formatNumber } from "../../../utils/helpers";
 
 import "./breakEvenDataTable.less";
 

@@ -9,7 +9,7 @@ import {
   BreakEvenDataTable,
   BecAccordion,
 } from "../../molecules";
-import { findStepSize } from "../../../helpers";
+import { findStepSize } from "../../../utils/helpers";
 import { FAQ_CONTENT, CALCULATOR_STEPS } from "../../../constants";
 
 import "./results.less";

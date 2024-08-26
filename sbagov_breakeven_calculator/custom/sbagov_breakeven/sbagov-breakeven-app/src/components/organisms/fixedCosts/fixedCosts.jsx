@@ -5,7 +5,7 @@ import { NumbersInputForm } from "../../molecules";
 import { MoneyInput } from "../../atoms";
 import { fixedCostFields, fixedCostInitState } from "./fixedCostsFieldsData";
 import { CALCULATOR_STEPS } from "../../../constants";
-import { sumValues } from "../../../helpers";
+import { sumValues } from "../../../utils/helpers";
 
 import "./fixedCosts.less";
 

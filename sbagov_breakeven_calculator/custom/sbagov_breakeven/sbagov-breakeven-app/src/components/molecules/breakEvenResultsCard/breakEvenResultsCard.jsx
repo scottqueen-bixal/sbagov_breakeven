@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Grid, Image, Card } from "semantic-ui-react";
 
 import { Icons } from "../../atoms";
-import { formatNumber, roundToTwoDecimals } from "../../../helpers";
+import { formatNumber, roundToTwoDecimals } from "../../../utils/helpers";
 import "./breakEvenResultsCard.less";
 
 const BreakEvenResultsCard = (props) => {

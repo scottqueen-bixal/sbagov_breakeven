@@ -8,7 +8,7 @@ import {
   variableCostInitState,
 } from "./variableCostsFieldsData";
 import { CALCULATOR_STEPS } from "../../../constants";
-import { sumValues } from "../../../helpers";
+import { sumValues } from "../../../utils/helpers";
 
 import "./variableCosts.less";
 

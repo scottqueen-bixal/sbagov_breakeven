@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
 import { Image, Card, Grid } from "semantic-ui-react";
-import { formatBreakEvenGraphData, formatNumber } from "../../../helpers";
+import { formatBreakEvenGraphData, formatNumber } from "../../../utils/helpers";
 import { Icons } from "../../atoms";
 
 import "./breakEvenGraph.less";
