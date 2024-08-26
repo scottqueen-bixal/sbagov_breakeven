@@ -9,20 +9,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import "semantic-ui-less/semantic.less";
 
-import Header from "./molecules/header/header";
-import Footer from "./molecules/footer/footer";
-import favicon from "../images/favicon.png";
-import { Helmet } from "react-helmet";
-
 const Layout = ({ children }) => {
   return (
     <>
-      <Helmet
-        link={[{ rel: "shortcut icon", type: "image/png", href: `${favicon}` }]}
-      />
-      <Header />
       <main>{children}</main>
-      <Footer />
     </>
   );
 };
