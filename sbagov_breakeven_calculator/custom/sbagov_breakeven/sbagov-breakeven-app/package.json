@@ -21,11 +21,11 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-spread": "7.12.13",
-    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@vitejs/plugin-react": "^4.3.1",
-    "cypress": "^13.13.2",
+    "cypress": "^13.13.3",
     "d3": "^5.16.0",
     "less": "^3.11.3",
     "prop-types": "^15.7.2",
@@ -33,9 +33,9 @@
     "react-accessible-accordion": "^5.0.0",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.0.0",
-    "semantic-ui-less": "^2.4.1",
-    "semantic-ui-react": "^2.1.5",
-    "vite": "^5.3.5",
+    "semantic-ui-less": "^2.5.0",
+    "semantic-ui-react": "^3.0.0-beta.2",
+    "vite": "^5.4.2",
     "vitest": "^2.0.5"
   }
 }
