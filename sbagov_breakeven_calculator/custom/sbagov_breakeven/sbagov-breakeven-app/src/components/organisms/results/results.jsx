@@ -160,11 +160,6 @@ const Results = (props) => {
       <Container id="faqAccordion">
         <BecAccordion data={FAQ_CONTENT[CALCULATOR_STEPS.RESULTS_PAGE] || []} />
       </Container>
-      <feedback-form
-        env={MODE}
-        product="BEPC"
-        productTitle="COVID Break Even Point Calculator Feedback"
-      ></feedback-form>
     </>
   );
 };

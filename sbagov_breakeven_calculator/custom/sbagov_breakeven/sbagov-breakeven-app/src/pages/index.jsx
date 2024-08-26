@@ -130,10 +130,6 @@ const BreakEvenCalculator = () => {
       <Container>
         <BecAccordion data={FAQ_CONTENT[stepNum] || []} />
       </Container>
-      <feedback-form
-        product="BEPC"
-        productTitle="COVID Break Even Point Calculator Feedback"
-      ></feedback-form>
     </Layout>
   );
 };
