@@ -70,8 +70,6 @@ const VariableCosts = ({
     }
   };
 
-  console.log(fields, totalVariableCosts);
-
   const TotalVariableCostPerUnit = () => {
     return (
       <Grid.Column>

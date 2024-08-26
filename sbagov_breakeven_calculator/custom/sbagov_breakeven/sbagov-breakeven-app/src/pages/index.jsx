@@ -23,15 +23,6 @@ const BreakEvenCalculator = () => {
   const [totalFixedCost, setTotalFixedCost] = useState("");
   const [shouldReset, setShouldReset] = useState(false);
 
-  console.log(
-    { stepNum },
-    { variableCostPerUnit },
-    { numUnits },
-    { pricePerUnit },
-    { totalFixedCost },
-    { shouldReset }
-  );
-
   const goToStep = (stepNum) => setStepNum(stepNum);
 
   const updateVariableCost = (variableCost) =>
