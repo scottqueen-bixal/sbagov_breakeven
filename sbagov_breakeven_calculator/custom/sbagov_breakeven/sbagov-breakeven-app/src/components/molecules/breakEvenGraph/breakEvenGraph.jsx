@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as d3 from "d3";
 import { Image, Card, Grid } from "semantic-ui-react";
 import { formatBreakEvenGraphData, formatNumber } from "../../../helpers";
@@ -342,121 +342,112 @@ export const drawLineChart = (data, windowWidth) => {
   setUpInteractiveTooltip();
   detectClickOutside();
 };
-export class BreakEvenGraph extends React.Component {
-  componentDidMount() {
-    window.addEventListener("resize", () =>
-      drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth)
-    );
-    drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth);
-  }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", () =>
-      drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth)
-    );
-  }
+const BreakEvenGraph = (props) => {
+  useEffect(() => {
+    props &&
+      window.addEventListener("resize", () =>
+        drawLineChart(formatBreakEvenGraphData(props), window.innerWidth)
+      );
+    return () =>
+      window.removeEventListener("resize", () =>
+        drawLineChart(formatBreakEvenGraphData(props), window.innerWidth)
+      );
+  }, []);
 
-  componentDidUpdate() {
-    drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth);
-  }
+  useEffect(() => {
+    drawLineChart(formatBreakEvenGraphData(props), window.innerWidth);
+  }, [props]);
 
-  render() {
-    return (
-      <Card fluid>
-        <Card.Content id="breakEvenGraph">
-          <Grid>
-            <Grid.Row columns={3}>
-              <Grid.Column
-                textAlign="center"
-                computer={2}
-                tablet={2}
-                mobile={4}
+  return (
+    <Card fluid>
+      <Card.Content id="breakEvenGraph">
+        <Grid>
+          <Grid.Row columns={3}>
+            <Grid.Column textAlign="center" computer={2} tablet={2} mobile={4}>
+              <Image centered alt="graph icon" size="tiny" left="true">
+                <Icons.GraphIcon />
+              </Image>
+            </Grid.Column>
+            <Grid.Column computer={5} tablet={10} mobile={12} stretched>
+              <h3>Break-Even Point Graph</h3>
+              <div className="subtext">
+                Graphical representation of your inputs. Click or tap in the
+                graph for detailed values.
+              </div>
+            </Grid.Column>
+            <Grid.Column
+              textAlign="center"
+              computer={9}
+              tablet={16}
+              mobile={16}
+            >
+              <Image
+                className="labelImg"
+                alt="unit sales label"
+                size="small"
+                left="true"
               >
-                <Image centered alt="graph icon" size="tiny" left="true">
-                  <Icons.GraphIcon />
-                </Image>
-              </Grid.Column>
-              <Grid.Column computer={5} tablet={10} mobile={12} stretched>
-                <h3>Break-Even Point Graph</h3>
-                <div className="subtext">
-                  Graphical representation of your inputs. Click or tap in the
-                  graph for detailed values.
+                <Icons.UnitSales />
+              </Image>
+              <Image
+                className="labelImg"
+                alt="total cost label"
+                size="small"
+                left="true"
+              >
+                <Icons.TotalCosts />
+              </Image>
+              <Image
+                className="labelImg"
+                alt="fixed cost label"
+                size="small"
+                left="true"
+              >
+                <Icons.FixedCosts />
+              </Image>
+              <Image
+                className="labelImg"
+                alt="breakeven point label"
+                size="small"
+                left="true"
+              >
+                <Icons.BreakevenPoint />
+              </Image>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>
+              <div className="graphContainer">
+                <div id="lineChart" data-testid="graph"></div>
+                <div
+                  className="unitLabel"
+                  data-testid="unit-sold"
+                  aria-hidden="true"
+                >
+                  Units Sold
                 </div>
-              </Grid.Column>
-              <Grid.Column
-                textAlign="center"
-                computer={9}
-                tablet={16}
-                mobile={16}
-              >
-                <Image
-                  className="labelImg"
-                  alt="unit sales label"
-                  size="small"
-                  left="true"
+                <div id="tooltip"></div>
+                <Card
+                  data-testid="breakevenLabel"
+                  fluid
+                  className="tooltip breakEvenLabel"
                 >
-                  <Icons.UnitSales />
-                </Image>
-                <Image
-                  className="labelImg"
-                  alt="total cost label"
-                  size="small"
-                  left="true"
-                >
-                  <Icons.TotalCosts />
-                </Image>
-                <Image
-                  className="labelImg"
-                  alt="fixed cost label"
-                  size="small"
-                  left="true"
-                >
-                  <Icons.FixedCosts />
-                </Image>
-                <Image
-                  className="labelImg"
-                  alt="breakeven point label"
-                  size="small"
-                  left="true"
-                >
-                  <Icons.BreakevenPoint />
-                </Image>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column>
-                <div className="graphContainer">
-                  <div id="lineChart" data-testid="graph"></div>
-                  <div
-                    className="unitLabel"
-                    data-testid="unit-sold"
-                    aria-hidden="true"
-                  >
-                    Units Sold
+                  <div className="units number">
+                    {formatNumber(
+                      formatBreakEvenGraphData(props).breakEvenPoint.data[0].x
+                    )}
                   </div>
-                  <div id="tooltip"></div>
-                  <Card
-                    data-testid="breakevenLabel"
-                    fluid
-                    className="tooltip breakEvenLabel"
-                  >
-                    <div className="units number">
-                      {formatNumber(
-                        formatBreakEvenGraphData(this.props).breakEvenPoint
-                          .data[0].x
-                      )}
-                    </div>
-                    <div>Break-Even</div>
-                    <div>Units Sold</div>
-                  </Card>
-                </div>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Card.Content>
-      </Card>
-    );
-  }
-}
+                  <div>Break-Even</div>
+                  <div>Units Sold</div>
+                </Card>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Card.Content>
+    </Card>
+  );
+};
 
 export default BreakEvenGraph;
