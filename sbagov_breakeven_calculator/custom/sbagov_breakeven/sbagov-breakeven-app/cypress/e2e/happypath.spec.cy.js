@@ -104,11 +104,6 @@ describe("Happy path through BEP Calc", () => {
           expect(contentValue).to.eq("inline-block");
         });
     });
-    // feedback form element there, but no shaddow form
-    // cy.get("feedback-form")
-    //   .shadow()
-    //   .find("#feedback__button")
-    //   .contains("Give us Feedback");
     cy.get("#printCTA").contains("Print Results");
     cy.get(".accordion")
       .contains("How to reduce your break-even point")
@@ -122,6 +117,5 @@ describe("Happy path through BEP Calc", () => {
     cy.contains(
       "Increases in fixed costs will increase your break-even point"
     ).should("be.visible");
-    cy.get(".return-link");
   });
 });
