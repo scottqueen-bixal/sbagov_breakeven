@@ -35,7 +35,7 @@
     "react-helmet": "^6.0.0",
     "semantic-ui-less": "^2.5.0",
     "semantic-ui-react": "^3.0.0-beta.2",
-    "vite": "^5.4.2",
+    "vite": "^5.4.6",
     "vitest": "^2.0.5"
   }
 }
